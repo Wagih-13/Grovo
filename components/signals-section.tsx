@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,21 +13,25 @@ const signals = [
     date: "60 Days",
     title: "Fashion Brand — Cairo",
     note: "From 0 to 104K EGP in sales",
+    image: "/result-1.jpg",
   },
   {
     date: "90 Days",
     title: "Clothing Brand — KSA",
     note: "+358% increase in monthly sales",
+    image: "",
   },
   {
     date: "45 Days",
     title: "E-Commerce Store",
     note: "+400% increase in orders after creative overhaul",
+    image: "",
   },
   {
     date: "30 Days",
     title: "New Brand Launch",
     note: "Store live + first 50 orders in first month",
+    image: "",
   },
 ];
 
@@ -163,7 +168,7 @@ function SignalCard({
   signal,
   index,
 }: {
-  signal: { date: string; title: string; note: string };
+  signal: { date: string; title: string; note: string; image: string };
   index: number;
 }) {
   return (
@@ -175,8 +180,18 @@ function SignalCard({
       )}
     >
       {/* Card with paper texture effect */}
-      <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-8">
+      <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-4">
         {/* Top torn edge effect */}
+        {signal.image ? (
+          <Image
+            src={signal.image}
+            alt="Issue Number"
+            width={100}
+            height={100}
+            loading="lazy"
+            className="w-full   object-cover"
+          />
+        ) : null}
         <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
 
         {/* Issue number - editorial style */}
